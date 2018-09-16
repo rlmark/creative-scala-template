@@ -1,7 +1,7 @@
 package ch7
 
 import doodle.core.Image._
-import doodle.core.{Color, Image}
+import doodle.core.{Angle, Color, Image}
 
 import scala.annotation.tailrec
 
@@ -98,4 +98,28 @@ object RecursionExercises {
   val testSierpinski1 = sierpinski(4)
   val testSierpinski2 = sierpinskiTailRec(4)
 
+  def gradientBoxes(count: Int, fillColor: Color): Image = {
+    val basicSquare = rectangle(40, 40)
+    count match {
+      case 0 => Image.empty
+      case n => basicSquare.fillColor(fillColor) beside gradientBoxes(n -1, fillColor.spin(Angle(0.25)))
+    }
+  }
+
+  def gradientBoxesTailRec(count: Int): Image = {
+    val basicSquare = rectangle(40, 40)
+
+    @tailrec
+    def loop(innerCount: Int, current: Image, color : Color): Image = {
+      innerCount match {
+        case 0 => current
+        case n =>
+          loop(n - 1, current beside basicSquare.fillColor(color), color.spin(Angle(0.25)) )
+      }
+    }
+    loop(count, Image.empty, Color.royalBlue)
+  }
+
+  val testGradient1 = gradientBoxes(10, Color.royalBlue)
+  val testGradient2 = gradientBoxesTailRec(10)
 }

@@ -7,7 +7,6 @@ import doodle.syntax._
 // Example.image.draw
 object Example {
   val image = circle(10) on circle(20) on circle(30)
-  image.draw
 
   val spunCircles =
     (circle(100) fillColor Color.red) beside
