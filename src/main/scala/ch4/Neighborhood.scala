@@ -1,6 +1,8 @@
+package ch4
 
-import doodle.core.{Color, Image}
 import doodle.core.Image._
+import doodle.core.{Color, Image}
+
 object Neighborhood {
   val roadSegment = (rectangle(150, 10) fillColor Color.yellow beside rectangle(50, 10) fillColor Color.black) above
   rectangle(200, 40) fillColor Color.black
